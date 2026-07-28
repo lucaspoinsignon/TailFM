@@ -1,0 +1,90 @@
+=== TAIL-AWARE vs real ===
+
+=== Hill tail index (smaller = heavier; gen should match real) ===
+    A(dep) lower:  real   3.47   gen   3.96
+    A(dep) upper:  real   3.35   gen   3.88
+    B(dep) lower:  real   3.27   gen   4.03
+    B(dep) upper:  real   3.19   gen   4.16
+    C(ind) lower:  real   3.09   gen   3.57
+    C(ind) upper:  real   3.18   gen   4.02
+  D(gauss) lower:  real   3.90   gen   4.90
+  D(gauss) upper:  real   4.36   gen   5.85
+
+=== Lower tail dependence lambda_L(q=0.02) per pair ===
+  (A(dep),B(dep)):  real 0.494   gen 0.258
+  (A(dep),C(ind)):  real 0.063   gen 0.126
+  (A(dep),D(gauss)):  real 0.063   gen 0.121
+  (B(dep),C(ind)):  real 0.058   gen 0.115
+  (B(dep),D(gauss)):  real 0.063   gen 0.121
+  (C(ind),D(gauss)):  real 0.043   gen 0.119
+
+=== Marginal 1-step VaR / CVaR of loss (-x) ===
+    A(dep) a=0.950:  VaR real   0.0272 gen   0.0302  |  CVaR real   0.0439 gen   0.0451
+    A(dep) a=0.990:  VaR real   0.0536 gen   0.0538  |  CVaR real   0.0747 gen   0.0710
+    A(dep) a=0.995:  VaR real   0.0650 gen   0.0654  |  CVaR real   0.0908 gen   0.0826
+    B(dep) a=0.950:  VaR real   0.0322 gen   0.0355  |  CVaR real   0.0514 gen   0.0528
+    B(dep) a=0.990:  VaR real   0.0611 gen   0.0627  |  CVaR real   0.0868 gen   0.0825
+    B(dep) a=0.995:  VaR real   0.0744 gen   0.0760  |  CVaR real   0.1065 gen   0.0968
+    C(ind) a=0.950:  VaR real   0.0207 gen   0.0231  |  CVaR real   0.0344 gen   0.0365
+    C(ind) a=0.990:  VaR real   0.0413 gen   0.0441  |  CVaR real   0.0603 gen   0.0601
+    C(ind) a=0.995:  VaR real   0.0522 gen   0.0544  |  CVaR real   0.0748 gen   0.0717
+  D(gauss) a=0.950:  VaR real   0.0203 gen   0.0230  |  CVaR real   0.0300 gen   0.0320
+  D(gauss) a=0.990:  VaR real   0.0352 gen   0.0372  |  CVaR real   0.0469 gen   0.0462
+  D(gauss) a=0.995:  VaR real   0.0433 gen   0.0439  |  CVaR real   0.0552 gen   0.0521
+
+=== ACF (lag 1..5), squared series: volatility clustering ===
+    A(dep) sq-ACF real [-0.   -0.02 -0.02 -0.02 -0.03]  gen [-0.04 -0.04 -0.03 -0.05 -0.03]
+    B(dep) sq-ACF real [-0.   -0.02 -0.02 -0.02 -0.03]  gen [-0.04 -0.05 -0.04 -0.04 -0.03]
+    C(ind) sq-ACF real [-0.02 -0.01 -0.02 -0.02 -0.03]  gen [-0.04 -0.05 -0.04 -0.04 -0.03]
+  D(gauss) sq-ACF real [ 0.02  0.01 -0.01 -0.02 -0.04]  gen [-0.04 -0.04 -0.04 -0.04 -0.04]
+
+=== VANILLA vs real ===
+
+=== Hill tail index (smaller = heavier; gen should match real) ===
+    A(dep) lower:  real   3.47   gen   8.75
+    A(dep) upper:  real   3.35   gen   8.70
+    B(dep) lower:  real   3.27   gen   8.24
+    B(dep) upper:  real   3.19   gen   7.82
+    C(ind) lower:  real   3.09   gen   7.84
+    C(ind) upper:  real   3.18   gen   7.89
+  D(gauss) lower:  real   3.90   gen   7.99
+  D(gauss) upper:  real   4.36   gen   7.90
+
+=== Lower tail dependence lambda_L(q=0.02) per pair ===
+  (A(dep),B(dep)):  real 0.494   gen 0.111
+  (A(dep),C(ind)):  real 0.063   gen 0.007
+  (A(dep),D(gauss)):  real 0.063   gen 0.011
+  (B(dep),C(ind)):  real 0.058   gen 0.011
+  (B(dep),D(gauss)):  real 0.063   gen 0.012
+  (C(ind),D(gauss)):  real 0.043   gen 0.018
+
+=== Marginal 1-step VaR / CVaR of loss (-x) ===
+    A(dep) a=0.950:  VaR real   0.0272 gen   0.0357  |  CVaR real   0.0439 gen   0.0434
+    A(dep) a=0.990:  VaR real   0.0536 gen   0.0485  |  CVaR real   0.0747 gen   0.0546
+    A(dep) a=0.995:  VaR real   0.0650 gen   0.0531  |  CVaR real   0.0908 gen   0.0586
+    B(dep) a=0.950:  VaR real   0.0322 gen   0.0430  |  CVaR real   0.0514 gen   0.0528
+    B(dep) a=0.990:  VaR real   0.0611 gen   0.0587  |  CVaR real   0.0868 gen   0.0667
+    B(dep) a=0.995:  VaR real   0.0744 gen   0.0643  |  CVaR real   0.1065 gen   0.0719
+    C(ind) a=0.950:  VaR real   0.0207 gen   0.0252  |  CVaR real   0.0344 gen   0.0316
+    C(ind) a=0.990:  VaR real   0.0413 gen   0.0358  |  CVaR real   0.0603 gen   0.0409
+    C(ind) a=0.995:  VaR real   0.0522 gen   0.0395  |  CVaR real   0.0748 gen   0.0443
+  D(gauss) a=0.950:  VaR real   0.0203 gen   0.0239  |  CVaR real   0.0300 gen   0.0296
+  D(gauss) a=0.990:  VaR real   0.0352 gen   0.0331  |  CVaR real   0.0469 gen   0.0377
+  D(gauss) a=0.995:  VaR real   0.0433 gen   0.0365  |  CVaR real   0.0552 gen   0.0408
+
+=== ACF (lag 1..5), squared series: volatility clustering ===
+    A(dep) sq-ACF real [-0.   -0.02 -0.02 -0.02 -0.03]  gen [-0.04 -0.04 -0.03 -0.04 -0.04]
+    B(dep) sq-ACF real [-0.   -0.02 -0.02 -0.02 -0.03]  gen [-0.03 -0.05 -0.04 -0.04 -0.03]
+    C(ind) sq-ACF real [-0.02 -0.01 -0.02 -0.02 -0.03]  gen [-0.03 -0.04 -0.04 -0.05 -0.03]
+  D(gauss) sq-ACF real [ 0.02  0.01 -0.01 -0.02 -0.04]  gen [-0.04 -0.03 -0.04 -0.04 -0.03]
+
+=== Portfolio risk (equal weights, h=10) ===
+a=0.950  TRUE VaR  0.0508 CVaR  0.0747 | TAIL-AWARE VaR  0.0516 [0.0470,0.0564] CVaR  0.0803 [0.0725,0.0898] | VANILLA VaR  0.0670 CVaR  0.0831
+a=0.990  TRUE VaR  0.0883 CVaR  0.1155 | TAIL-AWARE VaR  0.0959 [0.0834,0.1070] CVaR  0.1330 [0.1059,0.1640] | VANILLA VaR  0.0935 CVaR  0.1064
+a=0.995  TRUE VaR  0.1058 CVaR  0.1349 | TAIL-AWARE VaR  0.1188 [0.0990,0.1374] CVaR  0.1602 [0.1227,0.2062] | VANILLA VaR  0.1032 CVaR  0.1149
+
+Kupiec backtest (held-out, non-overlapping 10-step blocks):
+  a=0.950 tail-aware: exc  38/exp  50.0 p=0.070 | vanilla: exc  19 p=0.000
+  a=0.990 tail-aware: exc   7/exp  10.0 p=0.314 | vanilla: exc   8 p=0.510
+  a=0.995 tail-aware: exc   4/exp   5.0 p=0.642 | vanilla: exc   6 p=0.664
+figures saved.
