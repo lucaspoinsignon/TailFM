@@ -25,15 +25,15 @@
 > `diagnostic_timevae.py` (posterior collapse vs incompressible data).
 >
 > ```bash
-TAG=$(date +%Y%m%d)-seed0
-mkdir -p results/$TAG/tailfm results/$TAG/baselines
+>TAG=$(date +%Y%m%d)-seed0
+>mkdir -p results/$TAG/tailfm results/$TAG/baselines
+>cp run_out/report.log run_out/*.png                 results/$TAG/tailfm/
+>cp baseline_out/report.log baseline_out/*.png       results/$TAG/baselines/
+> cp baseline_out/backtest_report.log                 results/$TAG/baselines/ 2>/dev/null
+> du -sh results/$TAG        # sanity: should be ~1 MB, not 30
 
-cp run_out/report.log run_out/*.png                 results/$TAG/tailfm/
-cp baseline_out/report.log baseline_out/*.png       results/$TAG/baselines/
-cp baseline_out/backtest_report.log                 results/$TAG/baselines/ 2>/dev/null
-
-du -sh results/$TAG        # sanity: should be ~1 MB, not 30
 ```
+
 ```bash
 git add -A                 # your code changes
 git add -f results/        # the artifacts, overriding .gitignore
