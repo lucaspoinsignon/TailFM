@@ -31,8 +31,8 @@
 >cp baseline_out/report.log baseline_out/*.png       results/$TAG/baselines/
 > cp baseline_out/backtest_report.log                 results/$TAG/baselines/ 2>/dev/null
 > du -sh results/$TAG        # sanity: should be ~1 MB, not 30
+> ```
 
-```
 
 ```bash
 git add -A                 # your code changes
