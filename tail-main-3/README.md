@@ -25,7 +25,7 @@
 > `diagnostic_timevae.py` (posterior collapse vs incompressible data).
 >
 > ```bash
-> TAG=$(date +%Y%m%d)-seed0
+TAG=$(date +%Y%m%d)-seed0
 mkdir -p results/$TAG/tailfm results/$TAG/baselines
 
 cp run_out/report.log run_out/*.png                 results/$TAG/tailfm/
