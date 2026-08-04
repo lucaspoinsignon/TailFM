@@ -52,9 +52,13 @@ python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
        --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
 
 
+python -c "
 import pandas as pd
-a = pd.read_csv("returns_valor_assets.csv", index_col=0)
-print(a.sort_values("zero_frac", ascending=False)[["FI_ID","PRICE_TYPE","zero_frac","std","ex_kurtosis"]].head(20))
+r = pd.read_csv('returns_valor.csv'); q=0.05
+d = pd.DataFrame({'n_lo':(r<r.quantile(q)).sum(),'n_hi':(r>r.quantile(1-q)).sum(),
+                  'zero_frac':(r==0).mean(),'min':r.min(),'std':r.std()})
+print(d[(d.n_lo<30)|(d.n_hi<30)].sort_values('n_lo').to_string(float_format='%.4g'))
+"
 ```
 ```bash
 export ENV=/domino/datasets/local/Quail/envs/tails
