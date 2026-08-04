@@ -1,8 +1,17 @@
 ```bash
-cat ~/.condarc /opt/conda/.condarc /etc/conda/.condarc 2>/dev/null
-conda config --show channels channel_alias default_channels
-pip config list; cat /etc/pip.conf ~/.pip/pip.conf ~/.config/pip/pip.conf 2>/dev/null
-env | grep -iE 'nexus|proxy|index'
-grep -iE 'nexus|condarc|index-url|conda create' ~/.bash_history | tail -30
+# ~/.condarc
+channels:
+  - https://<nexus-host>/repository/<conda-proxy>/conda-forge
+default_channels: []
+channel_priority: strict
+
+ls /domino/datasets/local/ /mnt 2>/dev/null; df -h | grep -v overlay
+
+conda create -p /domino/datasets/local/Quail/envs/tails python=3.12 -y
+conda activate /domino/datasets/local/Quail/envs/tails
+python --version
+
+pip install --index-url https://<nexus-host>/repository/<pypi-proxy>/simple \
+    torch numpy scipy matplotlib pandas
 
 ```
