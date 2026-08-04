@@ -51,4 +51,16 @@ python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv \
 python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
        --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
 ```
+```bash
+export ENV=/domino/datasets/local/Quail/envs/tails
+export PATH=$ENV/bin:$PATH
+hash -r
+python -V
+python -c "import sys; assert sys.version_info[:2]>=(3,10), sys.version; print('OK', sys.executable)"
+python -m pip install --upgrade pip
+python -m pip install torch numpy scipy matplotlib pandas
+python -c "import pandas,numpy,scipy,matplotlib,torch;print('imports OK')"
+ls -la prices_raw.csv
+python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv --start 2019-12-23 --end 2026-01-05
+```
 
