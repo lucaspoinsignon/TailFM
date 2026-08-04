@@ -41,4 +41,14 @@ git status                 # verify: no .npy, no .pt, no .pkl
 git commit -m "Add tailfm integration + first run results"
 git push                   # or: git push -u origin HEAD
 ```
+to get the data first 
+```bash
+pip install pandas   # not in environment.yml, only download_data.py used it
+
+python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv \
+       --start 2019-12-23 --end 2026-01-05
+
+python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
+       --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
+```
 
