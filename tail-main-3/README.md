@@ -50,6 +50,8 @@ python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv \
 
 python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
        --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
+
+python diagnose_data.py --data returns_valor.csv --test-frac 0.2 --write-keep keep.txt
 ```
 ```bash
 export ENV=/domino/datasets/local/Quail/envs/tails
