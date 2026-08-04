@@ -51,7 +51,10 @@ python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv \
 python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
        --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
 
-python diagnose_data.py --data returns_valor.csv --test-frac 0.2 --write-keep keep.txt
+
+import pandas as pd
+a = pd.read_csv("returns_valor_assets.csv", index_col=0)
+print(a.sort_values("zero_frac", ascending=False)[["FI_ID","PRICE_TYPE","zero_frac","std","ex_kurtosis"]].head(20))
 ```
 ```bash
 export ENV=/domino/datasets/local/Quail/envs/tails
