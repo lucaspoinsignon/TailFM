@@ -50,14 +50,32 @@ python prepare_valor_csv.py --raw prices_raw.csv --out returns_valor.csv \
 
 python fit_returns.py --data returns_valor.csv --n 24 --test-frac 0.2 \
        --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_out
-
-
+```
+see what time series is bad
+```bash
 python -c "
 import pandas as pd
 r = pd.read_csv('returns_valor.csv'); q=0.05
 d = pd.DataFrame({'n_lo':(r<r.quantile(q)).sum(),'n_hi':(r>r.quantile(1-q)).sum(),
                   'zero_frac':(r==0).mean(),'min':r.min(),'std':r.std()})
 print(d[(d.n_lo<30)|(d.n_hi<30)].sort_values('n_lo').to_string(float_format='%.4g'))
+"
+```
+```bash
+python -c "
+import pandas as pd, matplotlib; matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+p = pd.read_csv('returns_valor_prices.csv', index_col=0, parse_dates=True)['V4157089']
+r = pd.read_csv('returns_valor.csv')['V4157089'].values
+q = 0.05
+print(p.describe(), sep='\n')
+print(f'n_lo={(r<pd.Series(r).quantile(q)).sum()}  zero_frac={(r==0).mean():.3f}  min={r.min():.3e}  n_uniq={pd.Series(r).nunique()}')
+fig, ax = plt.subplots(3, 1, figsize=(11, 9))
+ax[0].plot(p.index, p.values, lw=.8); ax[0].set_title('V4157089 price')
+ax[1].plot(p.index[1:], r, lw=.5);     ax[1].set_title('log returns')
+ax[2].hist(r, bins=200);               ax[2].set_yscale('log'); ax[2].set_title('return histogram (log count)')
+fig.tight_layout(); fig.savefig('V4157089.png', dpi=110)
+print('wrote V4157089.png')
 "
 ```
 ```bash
