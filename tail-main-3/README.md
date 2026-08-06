@@ -14,6 +14,9 @@ r.drop(columns=bad).to_csv('returns_all.csv', index=False, float_format='%.8e')
 print(pd.read_csv('returns_all.csv').shape)
 "
 
+python fit_returns.py --data returns_all.csv --n 24 --test-frac 0.2 --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_all
+
+
 ```
 
 > ```bash
