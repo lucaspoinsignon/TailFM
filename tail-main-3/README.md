@@ -2,9 +2,17 @@
 ```bash
 export PATH=/home/ubuntu/tails/bin:$PATH; hash -r; python -c "import numpy,pandas,scipy,matplotlib,torch" 2>/dev/null || { /domino/datasets/local/Quail/envs/tails/bin/python -m venv /home/ubuntu/tails; hash -r; python -m pip install --no-cache-dir numpy pandas scipy matplotlib torch; }; python -V && python -c "import torch;print('ready')"
 
-python prepare_valor_csv.py --raw prices_raw.csv --out returns_all.csv --start 2019-12-23 --end 2026-01-05 --max-zero-frac 0.99 --min-exceedances 30 --min-unique-frac 0.01 --ffill-limit 3
+python prepare_valor_csv.py --raw prices_raw.csv --out returns_all.csv --start 2019-12-23 --end 2026-01-05 --max-zero-frac 0.99 --ffill-limit 3
 
-python fit_returns.py --data returns_all.csv --n 24 --test-frac 0.2 --horizon 10 --seed 0 --steps 20000 --gen 50000 --outdir run_all
+python -c "
+import pandas as pd
+r = pd.read_csv('returns_all.csv'); q=0.05
+lo=(r<r.quantile(q)).sum(); hi=(r>r.quantile(1-q)).sum()
+bad=list(r.columns[(lo<30)|(hi<30)])
+print(f'dropping {len(bad)} EVT-infeasible ->', end=' ')
+r.drop(columns=bad).to_csv('returns_all.csv', index=False, float_format='%.8e')
+print(pd.read_csv('returns_all.csv').shape)
+"
 
 ```
 
