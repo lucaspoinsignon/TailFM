@@ -4,10 +4,13 @@ export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
 hash -r
 python -V
 
-export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
+df -h /home/ubuntu /tmp
+/domino/datasets/local/Quail/envs/tails/bin/python -m venv /home/ubuntu/tails
+export PATH=/home/ubuntu/tails/bin:$PATH
 hash -r
-python -m pip install --no-cache-dir --force-reinstall numpy
-python -c "import numpy; print(numpy.__version__, numpy.__file__)"
+python -V
+python -m pip install --no-cache-dir numpy pandas scipy matplotlib torch
+python -c "import numpy,pandas,scipy,matplotlib,torch;print('ALL OK')"
 
 ```
 
