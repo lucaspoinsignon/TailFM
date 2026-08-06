@@ -1,4 +1,9 @@
 # tailfm — Tail-aware Flow Matching for Multivariate Time Series
+```bash
+export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
+hash -r
+python -V
+```
 
 > ```bash
 > COMMON="--data data/timeseries.csv --prices --n 24 --test-frac 0.2 --horizon 10 --seed 0"
