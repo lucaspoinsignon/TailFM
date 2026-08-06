@@ -77,6 +77,15 @@ ax[2].hist(r, bins=200);               ax[2].set_yscale('log'); ax[2].set_title(
 fig.tight_layout(); fig.savefig('V4157089.png', dpi=110)
 print('wrote V4157089.png')
 "
+python -c "
+import pandas as pd
+r = pd.read_csv('returns_valor.csv'); q=0.05
+lo=(r<r.quantile(q)).sum(); hi=(r>r.quantile(1-q)).sum()
+bad=list(r.columns[(lo<30)|(hi<30)])
+print(f'dropping {len(bad)}:', bad)
+r.drop(columns=bad).to_csv('returns_valor.csv', index=False, float_format='%.8e')
+print(pd.read_csv('returns_valor.csv').shape)
+"
 ```
 ```bash
 export ENV=/domino/datasets/local/Quail/envs/tails
