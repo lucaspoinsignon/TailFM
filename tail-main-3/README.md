@@ -3,6 +3,12 @@
 export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
 hash -r
 python -V
+
+export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
+hash -r
+python -m pip install --no-cache-dir --force-reinstall numpy
+python -c "import numpy; print(numpy.__version__, numpy.__file__)"
+
 ```
 
 > ```bash
