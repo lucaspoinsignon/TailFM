@@ -1,16 +1,7 @@
 # tailfm — Tail-aware Flow Matching for Multivariate Time Series
 ```bash
-export PATH=/domino/datasets/local/Quail/envs/tails/bin:$PATH
-hash -r
-python -V
+export PATH=/home/ubuntu/tails/bin:$PATH; hash -r; python -c "import numpy,pandas,scipy,matplotlib,torch" 2>/dev/null || { /domino/datasets/local/Quail/envs/tails/bin/python -m venv /home/ubuntu/tails; hash -r; python -m pip install --no-cache-dir numpy pandas scipy matplotlib torch; }; python -V && python -c "import torch;print('ready')"
 
-df -h /home/ubuntu /tmp
-/domino/datasets/local/Quail/envs/tails/bin/python -m venv /home/ubuntu/tails
-export PATH=/home/ubuntu/tails/bin:$PATH
-hash -r
-python -V
-python -m pip install --no-cache-dir numpy pandas scipy matplotlib torch
-python -c "import numpy,pandas,scipy,matplotlib,torch;print('ALL OK')"
 
 ```
 
